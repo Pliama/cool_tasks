@@ -5,15 +5,16 @@
   "Database": {
     "Type": ["PostgreSQL","Redis"],
     "PostgreSQL": {
-      "Username": "postgres",
-      "Password": "postgres",
-      "DatabaseName": "cool_tasks",
-      "Hostname": "postgres",
+      "Username": "ycomdeblqmlkxy",
+      "Password": "16f2952f81f5b8fbde7aa903469618103d98615243a2ebcbc7c43c34888fc280",
+      "DatabaseName": "db1ut68n8ri2r3",
+      "Hostname": "ec2-54-235-177-183.compute-1.amazonaws.com",
       "Port": 5432
     },
     "Redis":{
-      "URL":"redis",
-      "Port":6379
+      "URL":"ec2-107-23-150-142.compute-1.amazonaws.com",
+      "Port":49499,
+      "Password":"pa01a3981212cb4fef102b219f9335989cacc98af72abb4b6f9de0b3b6639719f"
     }
   }
 }

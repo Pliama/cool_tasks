@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	configFile := flag.String("config", "src/config.json", "Configuration file in JSON-format")
+	configFile := flag.String("config", "/opt/cool_tasks/config/config.json", "Configuration file in JSON-format")
 	flag.Parse()
 
 	if len(*configFile) > 0 {
@@ -54,9 +54,20 @@ func main() {
 	middlewareManager.UseHandler(services.NewRouter())
 
 	log.Println("Starting HTTP listener...")
-	err = http.ListenAndServe(config.Config.ListenURL, middlewareManager)
+	err = http.ListenAndServe(getPort(), middlewareManager)
 	if err != nil {
 		log.Println(err)
 	}
 	log.Printf("Stop running application: %s", err)
+}
+
+//get heroku port
+func getPort() string {
+	var port = os.Getenv("PORT")
+	// Set a default port if there is nothing in the environment
+	if port == "" {
+		port = config.Config.ListenURL
+		log.Printf("INFO: No PORT environment variable detected, defaulting to " + port)
+	}
+	return ":" + port
 }
