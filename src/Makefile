@@ -14,10 +14,11 @@ packages = \
     ./services/events \
     ./services/hotels \
 
-all: test format go-build dc-build dc-up
+all: test format migrate-up go-build dc-build dc-up
 
 setup:
 	go get -u gopkg.in/alecthomas/gometalinter.v2
+	go get bitbucket.org/liamstask/goose/cmd/goose
 
 test:
 	@$(foreach package,$(packages), set -e; \
@@ -37,10 +38,10 @@ format:
 	go fmt $(packages)
 	
 migrate-down:
-	goose -dir ./migrations postgres "user=postgres password=postgres host=172.19.0.2 dbname=cool_tasks sslmode=disable" down-to 0
+	goose -dir ./migrations postgres "user=ycomdeblqmlkxy password=16f2952f81f5b8fbde7aa903469618103d98615243a2ebcbc7c43c34888fc280 host=ec2-54-235-177-183.compute-1.amazonaws.com dbname=db1ut68n8ri2r3 sslmode=require" down-to 0
 
 migrate-up:
-	goose -dir ./migrations postgres "user=postgres password=postgres host=172.19.0.2 dbname=cool_tasks sslmode=disable" up
+	goose -dir ./migrations postgres "user=ycomdeblqmlkxy password=16f2952f81f5b8fbde7aa903469618103d98615243a2ebcbc7c43c34888fc280 host=ec2-54-235-177-183.compute-1.amazonaws.com dbname=db1ut68n8ri2r3 sslmode=require" up
 
 doc:
 	godoc -http=:6060
